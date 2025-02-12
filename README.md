@@ -18,3 +18,6 @@ bridge fdb show dev bridge-test
 bridge link
 
 ```
+
+## Network diagram:
+![](images/diagram.png)
