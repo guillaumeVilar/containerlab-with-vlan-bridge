@@ -1,0 +1,27 @@
+# topology documentation: http://containerlab.dev/lab-examples/ext-bridge/
+name: topology
+
+topology:
+  kinds:
+    ceos:
+      enforce-startup-config: true
+      image: ceosimage:4.31.1F
+  nodes:
+    ceos1:
+      kind: ceos
+      startup-config: init-configs/ceos1.cfg
+    ceos2:
+      kind: ceos
+      startup-config: init-configs/ceos2.cfg
+    ceos3:
+      kind: ceos
+      startup-config: init-configs/ceos3.cfg
+
+    # note, that the bridge bridge-test must be created manually
+    bridge-test:
+      kind: bridge
+
+  links:
+    - endpoints: ["ceos1:eth1", "bridge-test:eth1"]
+    - endpoints: ["ceos1:eth2", "ceos2:eth2"]
+    - endpoints: ["ceos2:eth3", "ceos3:eth3"]
